@@ -100,4 +100,16 @@ class Invoice extends ApiClient
     {
         return $this->_get(Routes::INVOICE, ['startDate' => $timestamp]);
     }
+
+    /**
+    /**
+     * Create invoice
+     *
+     * @param array $parameters
+     * @return mixed
+     */
+    public function create(array $parameters = [])
+    {
+        return $this->_post(Routes::SAVE_INVOICE, $parameters]);
+    }
 }

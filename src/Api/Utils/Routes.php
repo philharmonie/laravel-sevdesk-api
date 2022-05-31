@@ -15,4 +15,5 @@ class Routes
     const COMMUNICATION_WAY = 'CommunicationWay';
     const CREDIT_NOTE = 'CreditNote';
     const INVOICE = 'Invoice';
+    const SAVE_INVOICE = 'Invoice/Factory/saveInvoice';
 }
