@@ -35,7 +35,7 @@ class Contact extends ApiClient
      */
     public function all(int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, ['depth' => $depth]);
+        return $this->get(Routes::CONTACT, ['depth' => $depth]);
     }
 
     /**
@@ -47,7 +47,7 @@ class Contact extends ApiClient
      */
     public function allByCity(string $city, int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, ['city' => $city, 'depth' => $depth]);
+        return $this->get(Routes::CONTACT, ['city' => $city, 'depth' => $depth]);
     }
 
     /**
@@ -58,7 +58,7 @@ class Contact extends ApiClient
      */
     public function allSuppliers(int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, [
+        return $this->get(Routes::CONTACT, [
             'category' => [
                 "id" => self::SUPPLIER,
                 "objectName" => "Category"
@@ -75,7 +75,7 @@ class Contact extends ApiClient
      */
     public function allCustomers(int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, [
+        return $this->get(Routes::CONTACT, [
             'category' => [
                 "id" => self::CUSTOMER,
                 "objectName" => "Category"
@@ -92,7 +92,7 @@ class Contact extends ApiClient
      */
     public function allPartners(int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, [
+        return $this->get(Routes::CONTACT, [
             'category' => [
                 "id" => self::PARTNER,
                 "objectName" => "Category"
@@ -109,7 +109,7 @@ class Contact extends ApiClient
      */
     public function allProspectCustomers(int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, [
+        return $this->get(Routes::CONTACT, [
             'category' => [
                 "id" => self::PROSPECT_CUSTOMER,
                 "objectName" => "Category"
@@ -127,7 +127,7 @@ class Contact extends ApiClient
      */
     public function allCustom(int $contactCategory, int $depth = 0)
     {
-        return $this->_get(Routes::CONTACT, [
+        return $this->get(Routes::CONTACT, [
             'category' => [
                 "id" => $contactCategory,
                 "objectName" => "Category"
@@ -144,9 +144,9 @@ class Contact extends ApiClient
      * @param $contactId
      * @return mixed
      */
-    public function get($contactId)
+    public function catch($contactId)
     {
-        return $this->_get(Routes::CONTACT . '/' . $contactId)[0];
+        return $this->get(Routes::CONTACT . '/' . $contactId)[0];
     }
 
     // ========================== create ==================================
@@ -164,7 +164,7 @@ class Contact extends ApiClient
             "id" => $contactType,
             "objectName" => "Category"
         ];
-        return $this->_post(Routes::CONTACT, $parameters);
+        return $this->post(Routes::CONTACT, $parameters);
     }
 
     /**
@@ -213,9 +213,8 @@ class Contact extends ApiClient
      * @param array $parameters
      * @return mixed
      */
-    public function createProspectCustomer(string $organisationName, array $parameters = [])
+    public function createProspectCustomer(array $parameters = [])
     {
-        $parameters['name'] = $organisationName;
         return $this->create(self::PROSPECT_CUSTOMER, $parameters);
     }
 
@@ -241,7 +240,7 @@ class Contact extends ApiClient
      */
     public function createAccountingContact(int $contactId)
     {
-        return $this->_post(Routes::ACCOUNTING_CONTACT, [
+        return $this->post(Routes::ACCOUNTING_CONTACT, [
             'contact' => [
                 "id" => $contactId,
                 "objectName" => "Contact"
@@ -260,7 +259,7 @@ class Contact extends ApiClient
      */
     public function update($contactId, array $parameters = [])
     {
-        return $this->_put(Routes::CONTACT . '/' . $contactId, $parameters);
+        return $this->put(Routes::CONTACT . '/' . $contactId, $parameters);
     }
 
     // ========================== delete ==================================
@@ -271,8 +270,8 @@ class Contact extends ApiClient
      * @param $contactId
      * @return mixed
      */
-    public function delete($contactId)
+    public function destroy($contactId)
     {
-        return $this->_delete(Routes::CONTACT . '/' . $contactId);
+        return $this->delete(Routes::CONTACT . '/' . $contactId);
     }
 }

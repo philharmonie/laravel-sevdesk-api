@@ -46,7 +46,7 @@ class CommunicationWay extends ApiClient
      */
     public function all()
     {
-        return $this->_get(Routes::COMMUNICATION_WAY);
+        return $this->get(Routes::COMMUNICATION_WAY);
     }
 
     /**
@@ -56,7 +56,7 @@ class CommunicationWay extends ApiClient
      */
     public function getByContact(int $contactId)
     {
-        return $this->_get(Routes::COMMUNICATION_WAY, [
+        return $this->get(Routes::COMMUNICATION_WAY, [
             'contact' => [
                 'id' => $contactId,
                 'objectName' => 'Contact',
@@ -76,7 +76,7 @@ class CommunicationWay extends ApiClient
      */
     private function create(int $contactId, string $communicationType, string $value)
     {
-        return $this->_post(Routes::COMMUNICATION_WAY, [
+        return $this->post(Routes::COMMUNICATION_WAY, [
             'type' => $communicationType,
             'contact' => [
                 "id" => $contactId,
@@ -115,6 +115,18 @@ class CommunicationWay extends ApiClient
     }
 
     /**
+     * Create mobile number.
+     *
+     * @param int $contactId
+     * @param string $mobileNumber
+     * @return mixed
+     */
+    public function createMobile(int $contactId, string $mobileNumber)
+    {
+        return $this->create($contactId, self::MOBILE_TYPE, $mobileNumber);
+    }
+
+    /**
      * Create website.
      *
      * @param int $contactId
@@ -134,8 +146,8 @@ class CommunicationWay extends ApiClient
      * @param $communicationWayId
      * @return mixed
      */
-    public function delete($communicationWayId)
+    public function destroy($communicationWayId)
     {
-        return $this->_delete(Routes::COMMUNICATION_WAY . '/' . $communicationWayId);
+        return $this->delete(Routes::COMMUNICATION_WAY . '/' . $communicationWayId);
     }
 }

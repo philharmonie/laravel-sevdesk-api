@@ -7,8 +7,9 @@
 
 namespace Exlo89\LaravelSevdeskApi\Api\Utils;
 
-use GuzzleHttp\Exception\BadResponseException;
+use DateTime;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 
 class ApiClient
 {
@@ -37,40 +38,45 @@ class ApiClient
     public function execute($httpMethod, $url, array $parameters = [])
     {
         try {
-            $parameters['token'] = $this->getToken();
-            $response = $this->getClient()->{$httpMethod}('api/v1/' . $url, ['query' => $parameters]);
-            $responseBody = json_decode((string)$response->getBody(), true);
+            $payload['headers'] = [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => $this->getToken(),
+            ];
+            $payload['json'] = $parameters;
+            $response = $this->getClient()->{$httpMethod}('api/v1/' . $url, $payload);
+            $responseBody = json_decode((string) $response->getBody(), true);
             return $responseBody['objects'];
         } catch (BadResponseException $exception) {
             $response = $exception->getResponse();
-            return json_decode((string)$response->getBody(), true);
+            return json_decode((string) $response->getBody(), true);
         }
-
     }
 
     // ========================= base methods ======================================
 
-    public function _get($url = null, $parameters = [])
+    public function get($url = null, $parameters = [])
     {
         return $this->execute('get', $url, $parameters);
     }
 
-    public function _post($url = null, array $parameters = [])
+    public function post($url = null, array $parameters = [])
     {
+
         return $this->execute('post', $url, $parameters);
     }
 
-    public function _put($url = null, array $parameters = [])
+    public function put($url = null, array $parameters = [])
     {
         return $this->execute('put', $url, $parameters);
     }
 
-    public function _patch($url = null, array $parameters = [])
+    public function patch($url = null, array $parameters = [])
     {
         return $this->execute('patch', $url, $parameters);
     }
 
-    public function _delete($url = null, array $parameters = [])
+    public function delete($url = null, array $parameters = [])
     {
         return $this->execute('delete', $url, $parameters);
     }

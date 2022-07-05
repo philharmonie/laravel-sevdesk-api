@@ -1,56 +1,56 @@
 {
-    "name": "exlo89/laravel-sevdesk-api",
-    "description": "A helpful Sevdesk API client for Laravel.",
-    "authors": [
-        {
-            "name": "Martin Appelmann",
-            "email": "hello@martin-appelmann.de",
-            "role": "Developer"
-        }
-    ],
-    "homepage": "https://github.com/exlo89/laravel-sevdesk-api",
-    "license": "MIT",
-    "keywords": [
-        "php",
-        "laravel",
-        "sevdesk",
-        "api",
-        "accounting"
-    ],
-    "require": {
-        "php": "^7.4.0|^8.0",
-        "guzzlehttp/guzzle": "^7.2"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9.0"
-    },
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "Exlo89\\LaravelSevdeskApi\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Exlo89\\LaravelSevdeskApi\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Exlo89\\LaravelSevdeskApi\\SevdeskApiServiceProvider"
-            ],
-            "aliases": {
-                "SevdeskApi": "Exlo89\\LaravelSevdeskApi\\Facades\\SevdeskApi"
-            }
-        }
+  "name": "philharmonie/laravel-sevdesk-api",
+  "description": "A helpful Sevdesk API client for Laravel.",
+  "authors": [
+    {
+      "name": "Martin Appelmann",
+      "email": "hello@martin-appelmann.de",
+      "role": "Developer"
     }
+  ],
+  "homepage": "https://github.com/philharmonie/laravel-sevdesk-api",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "laravel",
+    "sevdesk",
+    "api",
+    "accounting"
+  ],
+  "require": {
+    "php": "^7.4.0|^8.0",
+    "guzzlehttp/guzzle": "^7.2"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.0",
+    "phpunit/phpunit": "^9.0"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Exlo89\\LaravelSevdeskApi\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Exlo89\\LaravelSevdeskApi\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Exlo89\\LaravelSevdeskApi\\SevdeskApiServiceProvider"
+      ],
+      "aliases": {
+        "SevdeskApi": "Exlo89\\LaravelSevdeskApi\\Facades\\SevdeskApi"
+      }
+    }
+  }
 }

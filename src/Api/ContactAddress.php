@@ -30,6 +30,45 @@ class ContactAddress extends ApiClient
             "id" => $contactId,
             "objectName" => "Contact",
         ];
-        return $this->_post(Routes::CONTACT_ADDRESS, $parameters);
+        $parameters['country'] = [
+            "id" => $this->getCountryCode($parameters['country']),
+            "objectName" => "StaticCountry",
+        ];
+        return $this->post(Routes::CONTACT_ADDRESS, $parameters);
+    }
+
+    /**
+     * Get Country Code
+     *
+     * @param string $code
+     * @return int
+     */
+    private function getCountryCode($code)
+    {
+        switch ($code) {
+            case 'A':
+                return 43;
+            case 'B':
+                return 32;
+            case 'CH':
+                return 41;
+            case 'CZ':
+                return 420;
+            case 'D':
+                return 1;
+            case 'F':
+                return 33;
+            case 'I':
+                return 39;
+            case 'L':
+                return 370;
+            case 'RO':
+                return 40;
+            case 'VN':
+                return 84;
+
+            default:
+                return 1;
+        }
     }
 }

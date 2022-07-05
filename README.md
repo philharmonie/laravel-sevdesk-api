@@ -32,7 +32,7 @@ This is the contents of the published config file:
 ```php
 return [
     /*
-     * Api token you from sevdesk. 
+     * Api token you from sevdesk.
      */
     'api_token' => env('SEVDESK_API_TOKEN', ''),
 ];
@@ -99,7 +99,7 @@ $sevdeskApi->contact()->allCustom($categoryId);
 To get a single contact.
 
 ```php
-$sevdeskApi->contact()->get($contactId);
+$sevdeskApi->contact()->catch($contactId);
 ```
 
 ### Update Contact
@@ -115,7 +115,7 @@ $sevdeskApi->contact()->update($contactId, $parameters);
 To delete a single contact. `$contactId` is required.
 
 ```php
-$sevdeskApi->contact()->delete($contactId);
+$sevdeskApi->contact()->destroy($contactId);
 ```
 
 ### Create Contact Address
@@ -130,6 +130,12 @@ Create phone number.
 
 ```php
 $sevdeskApi->communicationWay()->createPhone($contactId, $phoneNumber);
+```
+
+Create mobile number.
+
+```php
+$sevdeskApi->communicationWay()->createMobile($contactId, $mobileNumber);
 ```
 
 Create email.
@@ -163,7 +169,7 @@ $sevdeskApi->communicationWay()->get($contactId);
 To delete a single communication way.
 
 ```php
-$sevdeskApi->communicationWay()->delete($communicationWayId);
+$sevdeskApi->communicationWay()->destory($communicationWayId);
 ```
 
 ### Retrieve Invoice
